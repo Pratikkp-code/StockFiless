@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./niftypred
+    container_name: nifty-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./niftypred/data:/app/data
+      - ./niftypred/saved_model:/app/saved_model
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    networks:
+      - nifty-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build: ./nifty-prediction-app
+    container_name: nifty-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - nifty-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  nifty-network:
+    driver: bridge
+
+volumes:
+  nifty-data:
+  nifty-models:
