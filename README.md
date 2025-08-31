@@ -1,4 +1,4 @@
-# NIFTY 50 Price Prediction Project
+# StockFiles :  NIFTY 50 Price Prediction Project
 
 A comprehensive machine learning project that predicts NIFTY 50 stock prices using a hybrid LSTM + CNN neural network model, with a modern React frontend and Flask backend.
 
