@@ -2,6 +2,9 @@
 
 A comprehensive machine learning project that predicts NIFTY 50 stock prices using a hybrid LSTM + CNN neural network model, with a modern React frontend and Flask backend.
 
+
+https://www.kaggle.com/code/vedanthumbe/mlwing
+
 ## 🚀 Features
 
 - **Advanced ML Model**: Hybrid LSTM + CNN architecture for accurate price predictions
