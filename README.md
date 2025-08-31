@@ -12,6 +12,21 @@ A comprehensive machine learning project that predicts NIFTY 50 stock prices usi
 - **Docker Support**: Fully containerized application for easy deployment
 - **RESTful API**: Flask backend with comprehensive endpoints
 
+<img width="1919" height="888" alt="image" src="https://github.com/user-attachments/assets/727f2809-ce2f-4668-852f-41aaed37b2c4" />
+
+
+
+
+<img width="1902" height="766" alt="image" src="https://github.com/user-attachments/assets/1be78df0-8380-4989-a4e4-626dde939c5f" />
+
+
+
+
+Trained model : 
+
+<img width="1886" height="888" alt="image" src="https://github.com/user-attachments/assets/661a0d20-ddae-4678-9760-783a9872fc28" />
+
+
 ## 🏗️ Architecture
 
 ```
