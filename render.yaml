@@ -11,13 +11,11 @@ services:
       - key: FLASK_DEBUG
         value: "1"
     healthCheckPath: /api/health
-    persistentDisks:
-      - name: nifty-data
-        mountPath: /app/data
-        sizeGB: 10
-      - name: nifty-models
-        mountPath: /app/saved_model
-        sizeGB: 5
+    disk:
+      name: nifty-data
+      mountPath: /app/data
+      sizeGB: 10
+      - 
 
   - type: web
     name: nifty-frontend
@@ -32,3 +30,7 @@ services:
           name: nifty-backend
           envVarKey: RENDER_EXTERNAL_URL
     healthCheckPath: /health
+    disk:
+      name: nifty-models
+      mountPath: /app/saved_model
+      sizeGB: 5
