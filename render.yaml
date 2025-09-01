@@ -11,7 +11,7 @@ services:
       - key: FLASK_DEBUG
         value: "0"
     healthCheckPath: /api/health
-    disks:
+    persistentDisks:
       - name: nifty-data-disk
         mountPath: /app/data
         sizeGB: 10
