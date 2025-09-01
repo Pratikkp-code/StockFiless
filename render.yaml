@@ -11,10 +11,13 @@ services:
       - key: FLASK_DEBUG
         value: "0"
     healthCheckPath: /api/health
-    disk:
-      name: nifty-data-disk
-      mountPath: /app/data
-      sizeGB: 10
+    disks:
+      - name: nifty-data-disk
+        mountPath: /app/data
+        sizeGB: 10
+      - name: nifty-models-disk
+        mountPath: /app/saved_model
+        sizeGB: 5
 
   - type: web
     name: nifty-frontend
@@ -23,11 +26,3 @@ services:
     dockerfilePath: Dockerfile
     startCommand: nginx -g "daemon off;"
     healthCheckPath: /health
-
-disks:
-  - name: nifty-data-disk
-    mountPath: /app/data
-    sizeGB: 10
-  - name: nifty-models-disk
-    mountPath: /app/saved_model
-    sizeGB: 5
