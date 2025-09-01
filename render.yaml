@@ -1,0 +1,35 @@
+
+services:
+  - type: web
+    name: nifty-backend 
+    rootDir: ./niftypred 
+    env: docker
+    dockerfilePath: Dockerfile 
+    
+    startCommand: gunicorn -w 4 -b 0.0.0.0:5000 app.app:app 
+    ports:
+      - 5000 
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: "0" 
+    healthCheckPath: /api/health 
+    disks:
+      - name: nifty-data-disk
+        path: /app/data 
+        sizeGB: 10
+      - name: nifty-models-disk
+        path: /app/saved_model 
+        sizeGB: 5 
+
+  - type: web
+    name: nifty-frontend 
+    rootDir: ./nifty-prediction-app 
+    env: docker
+    dockerfilePath: Dockerfile 
+    startCommand: nginx -g "daemon off;" 
+    ports:
+      - 80 
+    healthCheckPath: /health 
+    
