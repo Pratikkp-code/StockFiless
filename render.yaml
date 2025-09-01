@@ -2,7 +2,7 @@ services:
   - type: web
     name: nifty-backend
     env: docker
-    plan: starter   # change to free if you want free tier
+    plan: free  # change to free if you want free tier
     dockerfilePath: ./niftypred/Dockerfile
     dockerContext: ./niftypred
     envVars:
