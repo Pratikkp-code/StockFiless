@@ -19,6 +19,10 @@ RUN npm run build
 # Production stage
 FROM nginx:alpine
 
+# Accept API_URL as build argument
+ARG API_URL
+ENV API_URL=$API_URL
+
 # Copy built app from build stage
 COPY --from=build /app/build /usr/share/nginx/html
 

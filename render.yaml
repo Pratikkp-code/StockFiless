@@ -28,7 +28,7 @@ services:
     rootDir: ./nifty-prediction-app 
     env: docker
     dockerfilePath: Dockerfile 
-    startCommand: nginx -g "daemon off;" 
+    startCommand: nginx -g "daemon off;" # Nginx start command
     ports:
       - 80 
     healthCheckPath: /health 
