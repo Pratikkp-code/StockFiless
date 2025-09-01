@@ -19,18 +19,17 @@ RUN npm run build
 # Production stage
 FROM nginx:alpine
 
-# Accept API_URL as build argument
-ARG API_URL
-ENV API_URL=$API_URL
+# Install envsubst to allow runtime variable substitution
+RUN apk add --no-cache bash gettext
 
 # Copy built app from build stage
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy nginx config template (keep ${API_URL} placeholder inside)
+COPY nginx.conf /etc/nginx/templates/default.conf.template
 
 # Expose port
 EXPOSE 80
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Entry point: substitute API_URL into nginx config at container startup
+CMD ["/bin/sh", "-c", "envsubst '$API_URL' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
